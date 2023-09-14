@@ -17,7 +17,7 @@ export const App = () => {
 
   const customAuthHandler = () => {
     history.push('/login');
-
+    
   }
 
   const history = useHistory();
