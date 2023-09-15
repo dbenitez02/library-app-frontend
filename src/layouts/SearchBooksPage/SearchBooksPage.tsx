@@ -209,7 +209,7 @@ export const SearchBooksPage = () => {
                                 {indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks} items:
                             </p>
                             {books.map(book => (
-                                <SearchBook book={book} />
+                                <SearchBook key={book.id} book={book} />
                             ))}
                         </>
                         :
