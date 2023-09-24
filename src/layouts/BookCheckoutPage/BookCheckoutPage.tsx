@@ -281,7 +281,7 @@ export const BookCheckoutPage = () => {
                         ?
                         <img src={book?.img} width='226' height='349' alt="Book"/>
                         :  
-                          <img src={require("./../../Images/BookImages/book-luv2code-1000.png")} 
+                          <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')} 
                           width='229' height='349' alt="Book"/>
                         }
                     </div>
@@ -314,7 +314,7 @@ export const BookCheckoutPage = () => {
                         ?
                         <img src={book?.img} width='226' height='349' alt="Book"/>
                         :  
-                          <img src={require("./../../Images/BookImages/book-luv2code-1000.png")} 
+                          <img src={require("./../../Images/BooksImages/book-luv2code-1000.png")} 
                           width='229' height='349' alt="Book"/>
                         }
                 </div>

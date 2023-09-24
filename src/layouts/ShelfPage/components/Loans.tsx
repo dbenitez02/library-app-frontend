@@ -1,7 +1,6 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useEffect, useState } from "react";
 import ShelfCurrentLoans from "../../../models/ShelfCurrentLoans";
-import { error } from "console";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 import { LoansModal } from "./LoansModal";
@@ -11,7 +10,7 @@ export const Loans = () => {
     const { authState } = useOktaAuth();
     const [httpError, setHttpErrror] = useState(null);
 
-    // Current Loans
+    /** Current Loans */
     const [shelfCurrentLoans, setShelfCurrentLoans] = useState<ShelfCurrentLoans[]>([]);
     const [isLoadingUserLoans, setIsLoadingUserLoans] = useState(true);
     const [checkout, setCheckout] = useState(false);
@@ -80,7 +79,7 @@ export const Loans = () => {
     }
 
     async function renewLoan(bookId: number) {
-        const url = `http://localhost:8080/api/books/secure/renew/?bookId=${bookId}`
+        const url = `http://localhost:8080/api/books/secure/renew/loan/?bookId=${bookId}`
         const requestOptions = {
             method: 'PUT',
             headers: {
