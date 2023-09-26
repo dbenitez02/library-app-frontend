@@ -32,7 +32,7 @@ export const ShelfPage = () => {
                     </div>
                     <div className="tab-pane fade" id="nav-history" role="tabpanel"
                         aria-labelledby="nav-history-tab">
-                            {historyClick ? <HistoryPage/> : <></>}
+                            {historyClick ? <HistoryPage /> : <></>}
                     </div>
                 </div>
             </div>

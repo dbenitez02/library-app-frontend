@@ -15,6 +15,7 @@ export const Loans = () => {
     const [isLoadingUserLoans, setIsLoadingUserLoans] = useState(true);
     const [checkout, setCheckout] = useState(false);
 
+    /** useEffect for current loans */
     useEffect(() => {
         const fetchUSerCurrentLoans = async () => {
 
