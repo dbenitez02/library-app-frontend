@@ -1,15 +1,15 @@
 class MessageModel {
     title: string;
-    message: string;
+    question: string;
     id?: number;
     userEmail?: string;
     adminEmail?: string;
     resposne?: string;
     closed?: string;
 
-    constructor(title: string, message: string) {
+    constructor(title: string, question: string) {
         this.title = title;
-        this.message = message;
+        this.question = question;
     }
 }
 
