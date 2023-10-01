@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import MessageModel from "../../../models/MessageModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
+import { AdminMessage } from "./AdminMessage";
+import AdminMessageRequest from "../../../models/AdminMessageRequest";
 
 
 export const AdminMessages = () => {
@@ -14,13 +16,17 @@ export const AdminMessages = () => {
     const [httpError, setHttpError] = useState(false);
 
 
-    //Messages endpoint staet
+    // Messages endpoint staet
     const [messages, setMessages] = useState<MessageModel[]>([]);
     const [messagesPerPage] = useState(5)
     
-    //Pagination
+    // Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+
+    // Recall useEffect
+    const [buttonSubmit, setButtonSubmit] = useState(false);
+
 
     useEffect(() => {
         const fetchUserMessages = async () => {
@@ -37,7 +43,7 @@ export const AdminMessages = () => {
 
                 const messagesResponse = await fetch(url, requestOptions);
 
-                if(!messagesResponse.json) {
+                if(!messagesResponse.ok) {
                     throw new Error("Something went wrong!");
                 }
 
@@ -54,7 +60,7 @@ export const AdminMessages = () => {
         })
         window.scrollTo(0, 0);
 
-    }, [authState, currentPage]);
+    }, [authState, currentPage, buttonSubmit]);
 
     if (isLoadingMessages) {
         <SpinnerLoading />
@@ -66,6 +72,32 @@ export const AdminMessages = () => {
         </div>
     }
 
+    async function submitResponseToQuestion(id: number, response: string) {
+
+        const url = `http://localhost:8080/api/messages/secure/admin/message`;
+
+        if(authState && authState?.isAuthenticated && id !== null && response !== '') {
+            
+            const messageAdminRequestModel: AdminMessageRequest = new AdminMessageRequest(id, response);
+
+            const requestOptions = {
+                method: 'PUT',
+                headers: {
+                    Authorization: `Bearer ${authState.accessToken?.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(messageAdminRequestModel)
+            };
+
+            const messageRequestModelResponse = await fetch(url, requestOptions);
+
+            if (!messageRequestModelResponse.ok) {
+                throw new Error("Something went wrong");
+            }
+            setButtonSubmit(!buttonSubmit);
+        }
+    }
+
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 
@@ -74,9 +106,9 @@ export const AdminMessages = () => {
             {messages.length > 0 ?
             <>
                 <h5>Pending Q/A:</h5>
-                {messages.map(message => {
-                    <p>Questions that need a response</p>
-                })}
+                {messages.map(message => (
+                    <AdminMessage message={message} key={message.id} submitResponseToQuestion={submitResponseToQuestion}/>
+                ))}
             </>
             :
             <h5>No pending Q/A</h5>

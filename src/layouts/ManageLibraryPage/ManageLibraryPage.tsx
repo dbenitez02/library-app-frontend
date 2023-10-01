@@ -1,11 +1,11 @@
 import { useOktaAuth } from "@okta/okta-react";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+//import { Redirect } from "react-router-dom";
 import { AdminMessages } from "./components/AdminMessages";
 
 export const ManageLibraryPage = () => {
 
-    const { authState } = useOktaAuth();
+//    const { authState } = useOktaAuth();
 
     const [changeQuantityOfBooksClick, setChangeQuanitityOfBooksClicked] = useState(false);
     const [messagesClick, setMessagesClick] = useState(false);
@@ -26,10 +26,10 @@ export const ManageLibraryPage = () => {
         setMessagesClick(true);
     }
 
-    if (authState?.accessToken?.claims.userType === undefined) {
-        return <Redirect to='/home' />
-    }
-
+    // if  (authState?.accessToken?.claims.userType === undefined) {
+    //     return <Redirect to='/home' />
+    // }
+    
     return(
         <div className="container">
             <div className="mt-5">
