@@ -4,7 +4,7 @@ class MessageModel {
     id?: number;
     userEmail?: string;
     adminEmail?: string;
-    resposne?: string;
+    response?: string;
     closed?: string;
 
     constructor(title: string, question: string) {

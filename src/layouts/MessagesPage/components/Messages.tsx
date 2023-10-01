@@ -83,10 +83,10 @@ export const Messages = () => {
                                 <hr/>
                                 <div>
                                     <h5>Response: </h5>
-                                    {message.resposne && message.adminEmail ?
+                                    {message.response && message.adminEmail ?
                                         <>
                                         <h6>{message.adminEmail} (admin)</h6>
-                                        <p>{message.resposne}</p>
+                                        <p>{message.response}</p>
                                         </>
                                         :
                                         <p><i>Pending response from administration.</i></p>
